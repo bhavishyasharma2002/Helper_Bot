@@ -23,7 +23,7 @@ useEffect(()=> {
 
   const fetchBotResponse =async () => {
 
-        const {data} = await axios.post("http://localhost:4000", {input: input}, {
+        const {data} = await axios.post("https://helper-bot-app.onrender.com", {input: input}, {
           headers: {
             "Content-Type": "application/json",
           },
