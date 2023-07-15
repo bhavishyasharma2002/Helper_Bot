@@ -12,7 +12,7 @@ app.get("/", async(req, res) => {
         message: "This is CHAT_WITH_BOT AI APP"
     });
 });
-// const { configuration, OpenAIApi } = require("openai");
+//  const { configuration, OpenAIApi } = require("openai");
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
@@ -34,7 +34,7 @@ app.post("/", async (req, res)=> {
     console.log("PASSED:", req.body.input)
 
     res.status(200).send({
-        bot: response.data.choices[0].text
+        bot: response.data.choices[0].text,
     })
 
     }catch (err) {
