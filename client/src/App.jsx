@@ -13,7 +13,10 @@ import bot from "./assets/bot.png";
 // ] ;
 
 
-function App() {
+function App()
+
+{
+
   const[input, setInput] = useState("");
   const[posts, setPosts] = useState([]);
 
@@ -21,28 +24,28 @@ useEffect(()=> {
  document.querySelector(".layout").scrollTop = document.querySelector(".layout").scrollHeight;
 },[posts]);
 
-  const fetchBotResponse =async () => {
-
-        const {data} = await axios.post("https://helper-bot-app.onrender.com", {input: input}, {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-        );
-
-        return data;
-  };
-  const onSubmit =() =>{
+  const fetchBotResponse =async () =>{
+    const {data} = await axios.post("https://helper-bot-app.onrender.com", { input: input },{
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+    );
+  return data
+  }   
+  
+const onSubmit =() =>{
        if(input.trim() === "") return;
           updatePosts(input);
           updatePosts("loading...", false, true);
-          setInput("")
+          setInput("");
 
-          fetchBotResponse().then((res) =>{
+          fetchBotResponse().then((res) =>{ 
             console.log(res);
-            updatePosts(res.bot.trim(), true );
+            updatePosts( res.bot.trim(), true);
+
           });
-     };
+     };     
      const autoTypingBotResponse =(text) =>{
       let index = 0;
       let interval = setInterval(()=> {
@@ -93,8 +96,8 @@ useEffect(()=> {
     <section className="chat-container">  
       <div className="layout">
         {posts.map((post, index) =>(
-          <div> 
-            {/* key={index}; */}
+          <div   key={index}> 
+            
               <div className={'chat-bubble ${post.type === "bot" || post.type ==="loading"  ? "bot" : ""}'} >
                <div className="avatar">
                 <img src={post.type === "bot" ||post.type === "loading" ? bot: user}/>
